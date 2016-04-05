@@ -87,10 +87,29 @@ alterarProduto(PRODUTO *produtos , int tamanho){
 
 }
 
+excluirProduto(PRODUTO *produtos , int tamanho){
+	int i = 0;
+	int codigo = 0;
+	printf("Digite o codigo do produto: ");
+	scanf("%d" , &codigo);
+
+	PRODUTO produto = procurarProduto(produtos , tamanho , codigo);
+
+	int resp = 0;
+	printf("Deseja excluir o produto acima?\n[1] - Sim\n[2] - Nao");
+	scanf("%d" , &resp);
+	if(resp == 1){
+
+	}else{
+
+	}
+
+}
+
 escreverArquivo(PRODUTO *produtos , int tamanho){
 	FILE *arq;
 	int i = 0;
-	arq = fopen("/home/vinicius/arquivo.txt" , "w");
+	arq = fopen("/home/vinicius/arquivo.txt" , "wa");
 	
 	if(!arq){
 		printf("Erro ao abrir arquivo!");
@@ -106,16 +125,38 @@ escreverArquivo(PRODUTO *produtos , int tamanho){
 
 }
 
+lerArquivo(){
+	PRODUTO vetor[1];
+	FILE *arq;
+	arq = fopen("/home/vinicius/arquivo.txt" , "r");
+	
+	int codigo , quantidade;
+	float preco;
+	char nome[50];
+
+	int i = 0; 
+	int size = sizeof(vetor) / sizeof(vetor[0]);
+	
+	for(i ; i < size ; i++){
+		fscanf(arq , "%d" , &quantidade);
+		printf("\n %d \n" , quantidade);
+	}
+
+	fclose(arq);
+
+}
+
 main(){
 
-	int tamanho = 0;
-	printf("Digite a quantidade de produtos que serao cadastrados: ");
-	scanf("%d" , &tamanho);
+	// int tamanho = 0;
+	// printf("Digite a quantidade de produtos que serao cadastrados: ");
+	// scanf("%d" , &tamanho);
 
-	PRODUTO produtos;
+	// PRODUTO produtos;
 
-	cadastrarProdutos(&produtos , tamanho);
-	escreverArquivo(&produtos , tamanho);
+	// cadastrarProdutos(&produtos , tamanho);
+	// escreverArquivo(&produtos , tamanho);
+	lerArquivo();
 	// alterarProduto(&produtos , tamanho);
 	// exibeProdutos(&produtos , tamanho);
 	// procurarProduto(&produtos , tamanho);
